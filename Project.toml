@@ -1,0 +1,13 @@
+name = "MatterPower"
+uuid = "743831d1-0e6a-4e86-a0c4-1a098a68aca3"
+authors = ["Eiichiro Komatsu <eiichirokomatsu@me.com>"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
