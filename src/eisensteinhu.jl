@@ -6,13 +6,13 @@ Transfer function for the linear matter power spectrum without Baryon Acoustic O
 *Reference*: Equation (29-31) of Eisenstein and Hu, ApJ, 496, 605 (1998)
 
 # Arguments
-- `k`: the comoving wavenumber **in units of 1/Mpc**. I.e., there is no *h* in the wavenumber.
-- `ωm`: the physical baryon density parameter, `ωm` = Ωm h^2
-- `fbaryon`: the baryon fractionr,  `fbaryon` = Ωb/Ωb
+- `k::Real`: the comoving wavenumber **in units of 1/Mpc**. I.e., there is no *h* in the wavenumber.
+- `ωm::Real`: the physical baryon density parameter, `ωm` = Ωm h^2
+- `fbaryon::Real`: the baryon fractionr,  `fbaryon` = Ωb/Ωb
 
 This function is based on [Cosmology Routine Library (CRL)](https://wwwmpa.mpa-garching.mpg.de/~komatsu/crl/).
 """
-function t_nowiggle(k, ωm, fb) # k is in units of Mpc^{-1} [without h]
+function t_nowiggle(k::Real, ωm::Real, fb::Real) # k is in units of Mpc^{-1} [without h]
     α = 1 - 0.328fb * log(431ωm) + 0.38 * fb^2 * log(22.3ωm)
     s = 44.5 * log(9.83 / ωm) / √(1 + 10 * (fb * ωm)^(3 / 4))
     Γ = ωm * (α + (1 - α) / (1 + (0.43 * k * s)^4))
