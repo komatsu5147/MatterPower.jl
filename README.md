@@ -96,7 +96,7 @@ See [documentation](https://github.com/SciML/OrdinaryDiffEq.jl) for how to use t
 
 The following example code (avaiable in [examples/PowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PowerSpectrum.jl)) computes the linear growth factor, the linear and non-linear power spectra, the r.m.s. mass density fluctuation σ(R), and the non-linear mass M* defined by σ(M*) = 1.6865.
 
-If you would like to generate a nice figure showing linear and non-linear P(k) as a function of k, take a look at [examples/PlotPowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PowerSpectrum.jl).
+If you would like to generate a nice figure showing linear and non-linear P(k) as a function of k, take a look at [examples/PlotPowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PlotPowerSpectrum.jl).
 
 To check accuracy of linear and non-linear power spectra computed from `t_nowiggle(k, ωm, fbaryon)` against those of [CLASS](https://github.com/lesgourg/class_public), take a look at [examples/ComparePowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/ComparePowerSpectrum.jl).
 ```
