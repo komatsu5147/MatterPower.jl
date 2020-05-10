@@ -37,9 +37,9 @@ The package contains
 
 The linear matter power spectrum computed from the "no-wiggle" transfer function `t_nowiggle(k, ωm, fbaryon)` is not very accurate because it does not contain the Baryon Acoustic Oscillation (BAO) and it is a fitting function. If you need a very accurate linear matter power spectrum, you should use linear Boltzmann solvers such as [CAMB](https://github.com/cmbant/CAMB) and [CLASS](https://github.com/lesgourg/class_public).
 
-Nevertheless, if you do not need BAO, this linear matter power spectrum is reasonably accurate: it achieves precision better than 1.5% at all wavenumbers below k < 10 h/Mpc for ΛCDM cosmology with the standard thermal history of the Universe. This is quite sufficient for many purposes in the cosmological research (unless you need BAO, of course). Therefore, you can calculate many quantities in your research with decent accuracy very quickly using the functions given in this package.
+Nevertheless, if you do not need BAO, this linear matter power spectrum is reasonably accurate: it achieves precision better than 1.5% at all wavenumbers below k < 10 h/Mpc for ΛCDM cosmology with the standard thermal history of the Universe. This is quite sufficient for many purposes in the cosmological research (unless you need BAO, of course). Therefore, you can calculate many quantities in your research with decent accuracy quickly using the functions given in this package.
 
-Finding new, (hopefully) interesting problems is the hardest part of research. To explore new ideas, precision is often not needed; thus, you can use the functions given in this package to explore new ideas. Once you find interesting results that are worth exploring further with better precision, you can update your calculations with CAMB or CLASS.
+Finding new, (hopefully) interesting problems is the hardest part of doing research. To explore new ideas, precision is often not needed; thus, you can use the functions given in this package to explore new ideas. Once you find interesting results that are worth exploring further with better precision, you can update your calculations with CAMB or CLASS.
 
 Also, having a single, self-contained, simple and well-documented package should be useful for educational purposes. My hope is that beginning students would take a look at this package and gain insights into how the growth of linear density fluctuation and linear and non-linear matter power spectra are computed, before using public linear Boltzmann solvers as a black box.
 
@@ -90,13 +90,15 @@ with
 - `tspan = (a1, 1.0)` with `a1 = 0.01`
 - `u0 = [a1; -a1^2 * E(a1)]`
 
-See this [documentation](https://github.com/SciML/OrdinaryDiffEq.jl) for how to use this ODE solver.
+See [documentation](https://github.com/SciML/OrdinaryDiffEq.jl) for how to use this ODE solver.
 
 ## Example Juia code
 
 The following example code (avaiable in [examples/PowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PowerSpectrum.jl)) computes the linear growth factor, the linear and non-linear power spectra, the r.m.s. mass density fluctuation σ(R), and the non-linear mass M* defined by σ(M*) = 1.6865.
 
 If you would like to generate a nice figure showing linear and non-linear P(k) as a function of k, take a look at [examples/PlotPowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PowerSpectrum.jl).
+
+To check accuracy of linear and non-linear power spectra computed from `t_nowiggle(k, ωm, fbaryon)` against those of [CLASS](https://github.com/lesgourg/class_public), take a look at [examples/ComparePowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/ComparePowerSpectrum.jl).
 ```
 using MatterPower
 using Roots
@@ -151,10 +153,12 @@ println("Non-linear mass M* = ", Mstar, " M⊙/h")
 # %% Compute the non-linear power spectrum using halofit
 # Get three parameters [kσ, neff, C] needed for the halofit transform
 p = kσ, neff, C = setup_halofit(pk)
+
 # Calculate Ωm(z) = Ωm(z=0)(1+z)^3 / E^2(z), where E^2(z) = H^2(z) / H0^2
 z = redshift
 E2 = Ωm * (1 + z)^3 + Ωk * (1 + z)^2 + ΩΛ
 Ωmz = Ωm * (1 + z)^3 / E2
+
 # Get a halofit non-linear power spectrum at a specified value of the comoving wavenumber
 k_ov_h = 1 # h/Mpc
 pknl = halofit(pk, p, Ωmz, k_ov_h) # Mpc^3/h^3

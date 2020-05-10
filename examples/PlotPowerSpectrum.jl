@@ -52,23 +52,21 @@ println("Non-linear mass M* = ", Mstar, " M⊙/h")
 # %% Compute the non-linear power spectrum using halofit
 # Get three parameters [kσ, neff, C] needed for the halofit transform
 p = kσ, neff, C = setup_halofit(pk)
+
 # Calculate Ωm(z) = Ωm(z=0)(1+z)^3 / E^2(z), where E^2(z) = H^2(z) / H0^2
 z = redshift
 E2 = Ωm * (1 + z)^3 + Ωk * (1 + z)^2 + ΩΛ
 Ωmz = Ωm * (1 + z)^3 / E2
-# %% Loop over wavenumbers
+
+# Define a function to return a halofit non-linear power spectrum
+pknl(k_ov_h) = halofit(pk, p, Ωmz, k_ov_h) # Mpc^3/h^3
+
+# %% Plot results and save to "pk.pdf"
 lnk = log(3e-4):0.3:log(30)
-k_ov_h = exp.(lnk) # h/Mpc
-nk = length(k_ov_h)
-pknl = zeros(nk)
-for ik = 1:nk
-   # Get a halofit non-linear power spectrum at a a specified value of the comoving wavenumber
-   pknl[ik] = halofit(pk, p, Ωmz, k_ov_h[ik]) # Mpc^3/h^3
-end
-# %% Plot results and save to "dndlnm.pdf"
+k_ov_h = exp.(lnk)
 p = plot(
    k_ov_h,
-   pknl,
+   pknl.(k_ov_h),
    xaxis = :log,
    yaxis = :log,
    m = 2,
