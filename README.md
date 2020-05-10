@@ -107,7 +107,7 @@ using Roots
 redshift = 0
 
 # %% Define a function to return a linear matter power spectrum (in units of Mpc^3/h^3)
-# as a function of the comoving wavenumber, k_ov_h, in units of h/Mpc.
+# as a function of the comoving wavenumber, kovh, in units of h/Mpc.
 # Here is an example using Einstein & Hu's analytical transfer function
 
 # Cosmological parameters
@@ -122,18 +122,18 @@ sol = setup_growth(Ωm, ΩΛ)
 a = 1 / (1 + redshift)
 D1 = sol(a)[1]
 
-pk(k_ov_h) =
+pk(kovh) =
    D1^2 *
    As *
-   (k_ov_h * h0 / kpivot)^(ns - 1) *
-   (2 * k_ov_h^2 * 2998^2 / 5 / Ωm)^2 *
-   t_nowiggle(k_ov_h * h0, ωm, fb)^2 *
+   (kovh * h0 / kpivot)^(ns - 1) *
+   (2 * kovh^2 * 2998^2 / 5 / Ωm)^2 *
+   t_nowiggle(kovh * h0, ωm, fb)^2 *
    2 *
-   π^2 / k_ov_h^3
+   π^2 / kovh^3
 
 # %% Alternatively you may read in pre-computed data and define a spline function
 # using Dierckx
-# pk = Spline1D(tabulated_k_ov_h, tabulated_power_spectrum)
+# pk = Spline1D(tabulated_kovh, tabulated_power_spectrum)
 
 # %% Compute the r.m.s. mass fluctuation with a top-hat radius Rh
 Rh = 8 # Mpc/h
@@ -160,12 +160,12 @@ E2 = Ωm * (1 + z)^3 + Ωk * (1 + z)^2 + ΩΛ
 Ωmz = Ωm * (1 + z)^3 / E2
 
 # Define a function to return a halofit non-linear power spectrum
-pknl(k_ov_h) = halofit(pk, p, Ωmz, k_ov_h) # Mpc^3/h^3
+pknl(kovh) = halofit(pk, p, Ωmz, kovh) # Mpc^3/h^3
 
-k_ov_h = 1 # h/Mpc
-println("k = ", k_ov_h, " h/Mpc:")
-println("Non-linear P(k) = ", pknl(k_ov_h), " Mpc^3/h^3")
-println("linear P(k) = ", pk(k_ov_h), " Mpc^3/h^3")
+kovh = 1 # h/Mpc
+println("k = ", kovh, " h/Mpc:")
+println("Non-linear P(k) = ", pknl(kovh), " Mpc^3/h^3")
+println("linear P(k) = ", pk(kovh), " Mpc^3/h^3")
 ```
 ## Acknowledgment
 
