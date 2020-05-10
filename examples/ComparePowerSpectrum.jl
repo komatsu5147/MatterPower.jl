@@ -92,4 +92,23 @@ for ired = 1:7
    filename = @sprintf("comparison_z%1d.pdf", ired)
    savefig(filename)
    display(p)
+
+   # %% Compute the halofit power spectrum from CLASS's linear power spectrum
+   p = kσ, neff, C = setup_halofit(pklin_class)
+   pknl2(k_ov_h) = halofit(pklin_class, p, Ωmz, k_ov_h) # Mpc^3/h^3
+
+   # %% Plot results and save to "halofit_comparison_z[1-7].pdf"
+   p = plot(
+      k_ov_h,
+      pknl2.(k_ov_h) ./ pknl_class.(k_ov_h) .- 1,
+      xaxis = :log,
+      lab = "Non-linear P(k) from CLASS's linear P(k) and halofit",
+      ylab = L"P_{MatterPower}(k)/P_{CLASS}(k) - 1",
+      xlab = L"k~[h~Mpc^{-1}]",
+      title = @sprintf("Redshift: z = %1.1f", redshift[ired]),
+      legend = :bottomleft,
+   )
+   filename = @sprintf("halofit_comparison_z%1d.pdf", ired)
+   savefig(filename)
+   display(p)
 end
