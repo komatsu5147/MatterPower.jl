@@ -5,8 +5,8 @@ Return the solutions of coupled differential equations given in `growth!`,
 with the initial condition such that δ(a)/a = 1 at a = 1e-2.
 
 # Arguments
-- `Ωm`: present-day total matter density parameter
-- `ΩΛ`: present-day dark energy density parameter (for cosmological constant)
+- `Ωm::Real`: present-day total matter density parameter
+- `ΩΛ::Real`: present-day dark energy density parameter (for cosmological constant)
 
 # Examples
 ```julia-repl
@@ -48,7 +48,7 @@ julia> θ = sol(a)[2]
 -0.3526347043144974
 ```
 """
-function setup_growth(Ωm, ΩΛ)
+function setup_growth(Ωm::Real, ΩΛ::Real)
     Ωk = 1 - Ωm - ΩΛ
     a1 = 1e-2
     E1 = √(Ωm / a1^3 + Ωk / a1^2 + ΩΛ)
@@ -68,10 +68,10 @@ Coupled differential equations to obtain the growth factor of linear density flu
 2. Euler equation, ``θ' + (a'/a)θ - k^2 ϕ = 0``
 3. Poisson equation, ``k^2ϕ = -4πG a^2 ρm δ``
 
-where θ = div(velocity) and the primes denote conformal time derivatives.
-We rewrite these equations using derivatives with respect to the scale factor, `a`, instead:
+where θ = div(velocity), ϕ is the Newtonian gravitational potential, and the primes denote conformal time derivatives.
 
-1. `du[1]` = ``dδ/da = -θ/`a`^2/E(a)``
+To solve these equations, we rewrite them using derivatives with respect to the scale factor, `a`.
+1. `du[1]` = ``dδ/da = -θ/a^2/E(a)``
 2. `du[2]` = ``dθ/da = -θ/a + q^2ϕ/a^2/E(a)``
 3. ``q^2ϕ = -(3/2)Ωm δ/a``
 
@@ -86,15 +86,14 @@ These equations will be solved by Julia's ODE solver as
 
 `ODEProblem(growth!, u0, tspan, p)`
 
-See this [documentation](https://github.com/SciML/OrdinaryDiffEq.jl)
-for `OrdinaryDiffEq.jl` for how to use this ODE solver.
+See this [documentation](https://github.com/SciML/OrdinaryDiffEq.jl) for how to use this ODE solver.
 """
 function growth!(du, u, p, a)
     δ, θ = u
     Ωm, ΩΛ = p
     Ωk = 1 - Ωm - ΩΛ
     E = √(Ωm / a^3 + Ωk / a^2 + ΩΛ) # E(a) = H(a)/H0
-    k2ϕ = -(3 / 2) * Ωm * δ / a # Poisson equation
+    q2ϕ = -(3 / 2) * Ωm * δ / a # Poisson equation
     du[1] = dδda = -θ / a^2 / E # Continuity equation
-    du[2] = dθda = -θ / a + k2ϕ / a^2 / E # Euler equation
+    du[2] = dθda = -θ / a + q2ϕ / a^2 / E # Euler equation
 end
