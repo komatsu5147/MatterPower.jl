@@ -159,12 +159,13 @@ z = redshift
 E2 = Ωm * (1 + z)^3 + Ωk * (1 + z)^2 + ΩΛ
 Ωmz = Ωm * (1 + z)^3 / E2
 
-# Get a halofit non-linear power spectrum at a specified value of the comoving wavenumber
+# Define a function to return a halofit non-linear power spectrum
+pknl(k_ov_h) = halofit(pk, p, Ωmz, k_ov_h) # Mpc^3/h^3
+
 k_ov_h = 1 # h/Mpc
-pknl = halofit(pk, p, Ωmz, k_ov_h) # Mpc^3/h^3
 println("k = ", k_ov_h, " h/Mpc:")
-println("Non-linear P(k) = ", pknl, " Mpc^3/h^3")
-println("Linear P(k) = ", pk(k_ov_h), " Mpc^3/h^3")
+println("Non-linear P(k) = ", pknl(k_ov_h), " Mpc^3/h^3")
+println("linear P(k) = ", pk(k_ov_h), " Mpc^3/h^3")
 ```
 ## Acknowledgment
 
