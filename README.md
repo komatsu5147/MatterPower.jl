@@ -8,7 +8,7 @@ This package contains functions to compute
 
 The package contains
 1. Linear growth factor
-  - `setup_growth(Ωm, ΩΛ)`: returns an interpolation function containing solutions of the linear matter density (δ) and velocity divergence (θ/H0) fields as a function of the scale factor, a  
+  - `setup_growth(Ωm, ΩΛ[, a1])`: returns an interpolation function containing solutions of the linear matter density (δ) and velocity divergence (θ/H0) fields as a function of the scale factor, a  
 2. Linear matter transfer function
   - `t_nowiggle(k, ωm, fbaryon)`: returns a "no-wiggle transfer function", T0(k), from Equation (29-31) of [Eisenstein and Hu, ApJ, 496, 605 (1998)](https://iopscience.iop.org/article/10.1086/305424)
 3. Non-linear matter power spectrum
@@ -32,6 +32,9 @@ The package contains
 - `p::Array{T,1} where T <: Real`: an array containing three variables [kσ, neff, C], which are obtained from `p = setup_halofit(pk)`.
 - `Ωmz::Real`: matter density parameter at a given redshift z, e.g., ``Ωmz = Ωm(1+z)^3 / [Ωm(1+z)^3 + Ωk(1+z)^2 + ΩΛ]``.
 - `R::Real`: top-hat or Gaussian smoothing scale.
+
+## Optional Arguments
+- `a1::Real`: initial scale factor for `setup_growth(Ωm, ΩΛ[, a1])`, at which the initial condition is set as δ(a1) = a1. The default value: `1e-2`.
 
 ## Motivation
 

@@ -1,12 +1,15 @@
 """
-    setup_growth(Ωm, ΩΛ)
+    setup_growth(Ωm, ΩΛ[, a1=1e-2])
 
 Return the solutions of coupled differential equations given in `growth!`,
-with the initial condition such that δ(a)/a = 1 at a = 1e-2.
+with the initial condition such that ``δ(a) = a`` at `a = a1`. The default value is `a1 = 1e-2`.
 
 # Arguments
-- `Ωm::Real`: present-day total matter density parameter
-- `ΩΛ::Real`: present-day dark energy density parameter (for cosmological constant)
+- `Ωm::Real`: present-day total matter density parameter.
+- `ΩΛ::Real`: present-day dark energy density parameter (for cosmological constant).
+
+# Optional arguments
+- `a1::Real=1e-2`: initial scale factor, at which the initial condition is set as δ(a1) = a1.
 
 # Examples
 ```julia-repl
@@ -48,9 +51,8 @@ julia> θ = sol(a)[2]
 -0.3526347043144974
 ```
 """
-function setup_growth(Ωm::Real, ΩΛ::Real)
+function setup_growth(Ωm::Real, ΩΛ::Real, a1::Real=1e-2)
     Ωk = 1 - Ωm - ΩΛ
-    a1 = 1e-2
     E1 = √(Ωm / a1^3 + Ωk / a1^2 + ΩΛ)
     u0 = [a1; -a1^2 * E1]
     tspan = (a1, 1.0)
