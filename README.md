@@ -16,11 +16,11 @@ The package contains
   - `halofit(pk, p, Ωmz, k)`: returns a "halofit" non-linear matter power spectrum at a specified value of the comoving wavenuember `k` using [Smith et al.](https://academic.oup.com/mnras/article/341/4/1311/1038529)'s method with the parameters given in Appendix of [Takahashi et al., ApJ, 761, 152 (2012)](https://iopscience.iop.org/article/10.1088/0004-637X/761/2/152)
     - The terms proportional to (1+w) in Equation (A6, A7) of Takahashi et al. are not included in this function
 4. Variance of the matter density fluctuation
-  - `sigma2(pk, R)`: returns variance of the matter density fluctuation, σ^2, smoothed by a top-hat filter with radius `R`
-  - `dsigma2dR(pk, R)`: returns a derivative of variance, dσ^2/dR, with respect to a top-hat filter with radius `R`
-  - `sigma2gaus(pk, R)`: returns variance of the matter density fluctuation, σ^2, smoothed by a Gaussian filter with width `R`
-  - `dsigma2gausdR(pk, R)`: returns a derivative of variance, dσ^2/dR, with respect to a Gaussian filter with width `R`
-  - `d2sigma2gausdR2(pk, R)`: returns a secon derivative of variance, d^2σ^2/dR^2, with respect to a Gaussian filter with width `R`
+  - `sigma2(pk, R)`: returns variance of the matter density fluctuation, σ<sup>2</sup>, smoothed by a top-hat filter with radius `R`
+  - `dsigma2dR(pk, R)`: returns a derivative of variance, dσ<sup>2</sup>/dR, with respect to a top-hat filter with radius `R`
+  - `sigma2gaus(pk, R)`: returns variance of the matter density fluctuation, σ<sup>2</sup>, smoothed by a Gaussian filter with width `R`
+  - `dsigma2gausdR(pk, R)`: returns a derivative of variance, dσ<sup>2</sup>/dR, with respect to a Gaussian filter with width `R`
+  - `d2sigma2gausdR2(pk, R)`: returns a secon derivative of variance, d<sup>2</sup>σ<sup>2</sup>/dR<sup>2</sup>, with respect to a Gaussian filter with width `R`
 
 ## Arguments
 - `Ωm::Real`: present-day total matter density parameter.
@@ -37,7 +37,7 @@ The package contains
 
 The linear matter power spectrum computed from the "no-wiggle" transfer function `t_nowiggle(k, ωm, fbaryon)` is not very accurate because it does not contain the Baryon Acoustic Oscillation (BAO) and it is a fitting function. If you need a very accurate linear matter power spectrum, you should use linear Boltzmann solvers such as [CAMB](https://github.com/cmbant/CAMB) and [CLASS](https://github.com/lesgourg/class_public).
 
-Nevertheless, if you do not need BAO, this linear matter power spectrum is reasonably accurate: it achieves precision better than 1.5% at all wavenumbers below k < 10 h/Mpc for ΛCDM cosmology with the standard thermal history of the Universe. This is quite sufficient for many purposes in the cosmological research (unless you need BAO, of course). Therefore, you can calculate many quantities in your research with decent accuracy quickly using the functions given in this package.
+Nevertheless, if you exclude BAO, this linear matter power spectrum is reasonably accurate: it achieves precision better than 1.5% at all wavenumbers below k < 10 h/Mpc for ΛCDM cosmology with the standard thermal history of the Universe. This is quite sufficient for many purposes in the cosmological research (unless you need BAO, of course). Therefore, you can calculate many quantities in your research with decent accuracy quickly using the functions given in this package.
 
 Finding new, (hopefully) interesting problems is the hardest part of doing research. To explore new ideas, precision is often not needed; thus, you can use the functions given in this package to explore new ideas. Once you find interesting results that are worth exploring further with better precision, you can update your calculations with CAMB or CLASS.
 
