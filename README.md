@@ -8,7 +8,7 @@ This package contains functions to compute
 
 The package contains
 1. Linear growth factor
-  - `setup_growth(Ωm, ΩΛ[, a1])`: returns an interpolation function containing solutions of the linear matter density (δ) and velocity divergence (θ/H0) fields as a function of the scale factor, a  
+  - `growth(Ωm, ΩΛ[, a1=1e-2])`: returns an interpolation function containing solutions of the linear matter density (δ) and velocity divergence (θ/H0) fields as a function of the scale factor, a  
 2. Linear matter transfer function
   - `t_nowiggle(k, ωm, fbaryon)`: returns a "no-wiggle transfer function", T0(k), from Equation (29-31) of [Eisenstein and Hu, ApJ, 496, 605 (1998)](https://iopscience.iop.org/article/10.1086/305424)
 3. Non-linear matter power spectrum
@@ -103,7 +103,7 @@ If you would like to generate a nice figure showing linear and non-linear P(k) a
 
 To check accuracy of linear and non-linear power spectra computed from `t_nowiggle(k, ωm, fbaryon)` against those pre-computed by [CLASS](https://github.com/lesgourg/class_public), take a look at [examples/ComparePowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/ComparePowerSpectrum.jl).
 
-If you have the python wrapper for CLASS [classy](https://github.com/lesgourg/class_public/wiki/Python-wrapper) installed already, you can use [examples/PlotCLASSPowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PlotCLASSPowerSpectrum.jl) to call `classy` via `PyCall`, compute linear and non-linear P(k), and generate a figure. 
+If you have the python wrapper for CLASS [classy](https://github.com/lesgourg/class_public/wiki/Python-wrapper) installed already, you can use [examples/PlotCLASSPowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PlotCLASSPowerSpectrum.jl) to call `classy` via `PyCall`, compute linear and non-linear P(k), and generate a figure.
 ```
 using MatterPower
 using Roots
