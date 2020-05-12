@@ -31,8 +31,8 @@ cosmo.compute()
 # Define functions to return linear and non-linear power spectra
 # Note: The CLASS code takes wavenumbers in units of 1/Mpc (no h) and
 # return power spectra in units of Mpc^3 (no 1/h^3).
-pklin_class(kovh) = cosmo.pk_lin(kovh * h0, redshift) * h0^3
-pknl_class(kovh) = cosmo.pk(kovh * h0, redshift) * h0^3
+pklin_class(kovh) = cosmo.pk_lin(kovh * params["h"], redshift) * params["h"]^3
+pknl_class(kovh) = cosmo.pk(kovh * params["h"], redshift) * params["h"]^3
 
 # %% Plot results and save to "classpk.pdf"
 lnk = log(3e-4):0.3:log(30)
