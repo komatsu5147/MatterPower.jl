@@ -7,9 +7,11 @@ redshift = 0
 
 # %% Call the python wrapper for CLASS, `classy`, via PyCall
 classy = pyimport("classy")
+
+# Create an instance of the CLASS wrapper
 cosmo = classy.Class()
 
-# Set the parameters to the CLASS code
+# Create a dictionary of the cosmological parameters
 params = Dict(
     "output" => "mPk",
     "P_k_max_h/Mpc" => 30,
