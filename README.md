@@ -101,7 +101,9 @@ The following example code (avaiable in [examples/PowerSpectrum.jl](https://gith
 
 If you would like to generate a nice figure showing linear and non-linear P(k) as a function of k, take a look at [examples/PlotPowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PlotPowerSpectrum.jl).
 
-To check accuracy of linear and non-linear power spectra computed from `t_nowiggle(k, ωm, fbaryon)` against those of [CLASS](https://github.com/lesgourg/class_public), take a look at [examples/ComparePowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/ComparePowerSpectrum.jl).
+To check accuracy of linear and non-linear power spectra computed from `t_nowiggle(k, ωm, fbaryon)` against those pre-computed by [CLASS](https://github.com/lesgourg/class_public), take a look at [examples/ComparePowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/ComparePowerSpectrum.jl).
+
+If you have the python wrapper for CLASS [classy](https://github.com/lesgourg/class_public/wiki/Python-wrapper) installed already, you can use [examples/PlotCLASSPowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PlotCLASSPowerSpectrum.jl) to call `classy` via `PyCall`, compute linear and non-linear P(k), and generate a figure. 
 ```
 using MatterPower
 using Roots
