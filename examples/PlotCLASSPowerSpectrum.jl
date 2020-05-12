@@ -5,7 +5,7 @@ using Plots, LaTeXStrings
 # %% Specify a redshift
 redshift = 0
 
-# %% Define functions to return linear and non-linear matter power spectra (in units of Mpc^3/h^3)
+# %% Call the python wrapper for CLASS, `classy`, via PyCall
 classy = pyimport("classy")
 cosmo = classy.Class()
 
@@ -27,7 +27,7 @@ cosmo.set(params)
 cosmo.compute()
 
 # Define functions to return linear and non-linear power spectra
-# Note: CLASS codes take wavenumbers in units of 1/Mpc (no h) and
+# Note: The CLASS code takes wavenumbers in units of 1/Mpc (no h) and
 # return power spectra in units of Mpc^3 (no 1/h^3).
 pklin_class(kovh) = cosmo.pk_lin(kovh * h0, redshift) * h0^3
 pknl_class(kovh) = cosmo.pk(kovh * h0, redshift) * h0^3
