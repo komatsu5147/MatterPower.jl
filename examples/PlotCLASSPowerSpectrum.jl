@@ -15,6 +15,7 @@ cosmo = classy.Class()
 params = Dict(
     "output" => "mPk",
     "P_k_max_h/Mpc" => 30,
+    "z_pk" => 5,
     "non linear" => "halofit",
     "A_s" => 2.097e-9,
     "n_s" => 0.9652,
