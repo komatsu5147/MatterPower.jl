@@ -27,7 +27,7 @@ function sigma2(pk, R::Real)
       W = (3 / x) * (sin(x) / x^2 - cos(x) / x)
       dσ2dk = W^2 * pk(k) * k^2 / 2 / π^2
    end
-   res, err = hquadrature(dσ2dk, 0, 20 / R)
+   res, err = quadde(dσ2dk, 0, Inf)
    σ2 = res
 end
 
@@ -65,7 +65,7 @@ function dsigma2dR(pk, R::Real)
       dWdx = (-3 / x) * ((3 / x^2 - 1) * sin(x) / x - 3 * cos(x) / x^2)
       dσ2dRdk = 2 * W * dWdx * pk(k) * k^3 / 2 / π^2
    end
-   res, err = hquadrature(dσ2dRdk, 0, 20 / R)
+   res, err = quadde(dσ2dRdk, 0, Inf)
    dσ2dR = res
 end
 
@@ -91,7 +91,7 @@ function sigma2gaus(pk, R::Real)
       x = k * R
       dσ2dk = exp(-x^2) * pk(k) * k^2 / 2 / π^2
    end
-   res, err = hquadrature(dσ2dk, 0, 10 / R)
+   res, err = quadde(dσ2dk, 0, Inf)
    σ2 = res
 end
 
@@ -117,7 +117,7 @@ function dsigma2gausdR(pk, R::Real)
       x = k * R
       dσ2dRdk = -2R * exp(-x^2) * pk(k) * k^4 / 2 / π^2
    end
-   res, err = hquadrature(dσ2dRdk, 0, 10 / R)
+   res, err = quadde(dσ2dRdk, 0, Inf)
    dσ2dR = res
 end
 
@@ -143,6 +143,6 @@ function d2sigma2gausdR2(pk, R::Real)
       x = k * R
       d2σ2dR2dk = (-2 + 4 * x^2) * exp(-x^2) * pk(k) * k^4 / 2 / π^2
    end
-   res, err = hquadrature(d2σ2dR2dk, 0, 10 / R)
+   res, err = quadde(d2σ2dR2dk, 0, Inf)
    d2σ2dR2 = res
 end

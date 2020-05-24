@@ -4,7 +4,7 @@ authors = ["Eiichiro Komatsu <eiichirokomatsu@me.com>"]
 version = "0.1.0"
 
 [deps]
-HCubature = "19dc6840-f33b-545b-b366-655c7e3ffd49"
+DoubleExponentialFormulas = "eb426421-6452-4132-80ef-4b100a757ac5"
 OrdinaryDiffEq = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
 Roots = "f2b01f46-fcfa-551c-844a-d8ac1e96c665"
 

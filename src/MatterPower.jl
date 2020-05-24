@@ -1,6 +1,6 @@
 module MatterPower
 using OrdinaryDiffEq
-using HCubature
+using DoubleExponentialFormulas
 using Roots
 export t_nowiggle
 export setup_growth
