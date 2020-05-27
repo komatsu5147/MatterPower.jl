@@ -44,7 +44,7 @@ println("σ(R) = ", √σ2, " for R = ", Rh, " Mpc/h")
 # ρc is the present-day critical density of the Universe in units of h^2 M⊙/Mpc^3
 ρc = 2.775e11
 f(x) = √sigma2(pk, x) - 1.6865
-Rstar = find_zero(f, (1e-2, 1e2), Bisection())
+Rstar = find_zero(f, (1e-2, 3), Bisection())
 println("R* = ", Rstar, " h/Mpc")
 Mstar = 4π / 3 * ρc * Ωm * Rstar^3
 println("Non-linear mass M* = ", Mstar, " M⊙/h")
