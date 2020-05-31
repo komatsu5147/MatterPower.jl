@@ -34,7 +34,7 @@ h0 = params["h"]
 cosmo.set(params)
 cosmo.compute()
 
-# %% Compute Ωgrav and Ωtherm at seven redshifts
+# %% Compute non-linear mass, Mstar, at various redshifts
 redshift = 0:0.1:2
 nred = length(redshift)
 Rstar = zeros(nred)
