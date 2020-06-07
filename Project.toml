@@ -1,7 +1,7 @@
 name = "MatterPower"
 uuid = "743831d1-0e6a-4e86-a0c4-1a098a68aca3"
 authors = ["Eiichiro Komatsu <eiichirokomatsu@me.com>"]
-version = "0.1.0"
+version = "0.5.0"
 
 [deps]
 DoubleExponentialFormulas = "eb426421-6452-4132-80ef-4b100a757ac5"
