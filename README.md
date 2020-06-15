@@ -15,6 +15,7 @@ The package contains
   - `setup_halofit(pk)`: returns an array containing three variables `p=[kσ, neff, C]` defined in Equation (C6-C8) of [Smith et al., MNRAS, 341, 1311 (2003)](https://academic.oup.com/mnras/article/341/4/1311/1038529)
   - `halofit(pk, p, Ωmz, k)`: returns a "halofit" non-linear matter power spectrum at a specified value of the comoving wavenuember `k` using [Smith et al.](https://academic.oup.com/mnras/article/341/4/1311/1038529)'s method with the parameters given in Appendix of [Takahashi et al., ApJ, 761, 152 (2012)](https://iopscience.iop.org/article/10.1088/0004-637X/761/2/152)
     - The terms proportional to (1+w) in Equation (A6, A7) of Takahashi et al. are not included in this function
+    - **Limitation of halotfit**: The halofit non-linear power spectrum does not capture smearing of the Baryon Acoustic Oscillation (BAO) due to non-linear evolution. You can see this clearly in the correlation function, whose peak is not smeared out but stays similar to the linear theory prediction. See [examples/PlotCorrelationFunctions.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PlotCorrelationFunctions.jl).
 4. Variance of the matter density fluctuation
   - `sigma2(pk, R)`: returns variance of the matter density fluctuation, σ<sup>2</sup>, smoothed by a top-hat filter with radius `R`
   - `dsigma2dR(pk, R)`: returns a derivative of variance, dσ<sup>2</sup>/dR, with respect to a top-hat filter with radius `R`
