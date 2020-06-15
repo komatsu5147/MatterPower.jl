@@ -8,7 +8,7 @@ using DelimitedFiles, Printf
 redshift = [0, 0.3, 0.5, 0.7, 1, 1.3, 1.5]
 ired = 1
 
-# %% Read in linear and non-linear power spectra computed by CLASS
+# %% Read in linear and non-linear power spectra computed by CLASS and spline interpolate in k
 filename = @sprintf("data/matterpower05_z%1d_pk.dat", ired)
 d = readdlm(filename, comments = true)
 pklin_class = Spline1D(d[:, 1], d[:, 2])
@@ -56,11 +56,9 @@ E2 = Ωm * (1 + z)^3 + Ωk * (1 + z)^2 + ΩΛ
 
 # Define a function to return a halofit non-linear power spectrum
 pknl(kovh) = halofit(pk, p, Ωmz, kovh) # Mpc^3/h^3
-# Spline interpolation to save time
-pknls = Spline1D(d[:, 1], pknl.(d[:, 1]))
 
 # %% Compute correlation functions
-kmin, kmax = 5e-4, Inf
+kmin, kmax = 1e-4, Inf
 R = Float64.(10:2:200)
 ξ1 = zeros(length(R))
 ξ2 = zeros(length(R))
@@ -69,7 +67,7 @@ R = Float64.(10:2:200)
 for i = 1:length(R)
    func1(k) = k^2 * pk(k) * sin(k * R[i]) / (k * R[i]) / 2 / π^2
    ξ1[i], err = quaddeo(func1, R[i], 0, kmin, kmax)
-   func2(k) = k^2 * pknls(k) * sin(k * R[i]) / (k * R[i]) / 2 / π^2
+   func2(k) = k^2 * pknl(k) * sin(k * R[i]) / (k * R[i]) / 2 / π^2
    ξ2[i], err = quaddeo(func2, R[i], 0, kmin, kmax)
    func3(k) = k^2 * pklin_class(k) * sin(k * R[i]) / (k * R[i]) / 2 / π^2
    ξ3[i], err = quaddeo(func3, R[i], 0, kmin, kmax)

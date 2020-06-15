@@ -49,7 +49,7 @@ using DoubleExponentialFormulas
 # %% Define a function to return a power spectrum. See "Example Juia code" below for the example.
 pk(k) = ...
 # %% Compute ξ(R)
-kmin, kmax = 5e-4, Inf # h/Mpc
+kmin, kmax = 1e-4, Inf # h/Mpc
 R = 10.0 # Mpc/h
 func(k) = k^2 * pk(k) * sin(k * R) / (k * R) / 2 / π^2
 ξ, err = quaddeo(func, R, 0, kmin, kmax)
