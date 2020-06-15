@@ -43,7 +43,7 @@ Fourier transform of the power spectrum is a two-point correlation function in c
 
 ξ(R) = (2π<sup>2</sup>)<sup>-1</sup> ∫<sub>0</sub><sup>∞</sup> dk k<sup>2</sup> P(k) sin(kR)/(kR) .
 
-This integral is difficult to evaluate because of the oscillatory function `sin(kR)/(kR)`. Fortunately, a Julia function `quaddeo` available in [DoubleExponentialFormulas.jl](https://github.com/machakann/DoubleExponentialFormulas.jl) can handle this integral. (Many thanks to [machakann](https://github.com/machakann) for implementing this!) Here is an exmaple Julia code to compute the corrletion function.
+This integral is difficult to evaluate because of the oscillatory function `sin(kR)/(kR)`. Fortunately, a Julia function `quaddeo` available in [DoubleExponentialFormulas.jl](https://github.com/machakann/DoubleExponentialFormulas.jl) can handle this integral. (Many thanks to [machakann](https://github.com/machakann) for implementing this!) Here is an exmaple Julia code to compute the corrletion function. Also see [examples/PlotCorrelationFunctions.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PlotCorrelationFunctions.jl).
 ```Julia
 using DoubleExponentialFormulas
 # %% Define a function to return a power spectrum. See "Example Juia code" below for the example.
