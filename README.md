@@ -43,7 +43,7 @@ Fourier transform of the power spectrum is a two-point correlation function in c
 ξ(R) = (2π<sup>2</sup>)<sup>-1</sup> ∫<sub>0</sub><sup>∞</sup> dk k<sup>2</sup> P(k) sin(kR)/(kR) .
 
 This integral is difficult to evaluate because of the oscillatory function `sin(kR)/(kR)`. Fortunately, a Julia function `quaddeo` available in [DoubleExponentialFormulas.jl](https://github.com/machakann/DoubleExponentialFormulas.jl) can handle this integral. (Many thanks to [machakann](https://github.com/machakann) for implementing this!) Here is an exmaple Julia code to compute the corrletion function.
-```
+```Julia
 using DoubleExponentialFormulas
 # %% Define a function to return a power spectrum. See "Example Juia code" below for the example.
 pk(k) = ...
@@ -88,7 +88,7 @@ where
 - ``q = k/H0``
 
 These equations are put in the form of a function `growth!(du, u, p, a)`
-```
+```Julia
 function growth!(du, u, p, a)
     δ, θ = u
     Ωm, ΩΛ = p
@@ -100,7 +100,7 @@ function growth!(du, u, p, a)
 end
 ```
 and solved by Julia's ODE solver as
-```
+```Julia
 prob = ODEProblem(growth!, u0, tspan, [Ωm, ΩΛ])
 sol = solve(prob, Tsit5())
 ```
@@ -122,7 +122,7 @@ If you would like to generate a nice figure showing linear and non-linear P(k) a
 To check accuracy of linear and non-linear power spectra computed from `t_nowiggle(k, ωm, fbaryon)` against those pre-computed by [CLASS](https://github.com/lesgourg/class_public), take a look at [examples/ComparePowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/ComparePowerSpectrum.jl).
 
 If you have the python wrapper for CLASS [classy](https://github.com/lesgourg/class_public/wiki/Python-wrapper) installed already, you can use [examples/PlotCLASSPowerSpectrum.jl](https://github.com/komatsu5147/MatterPower.jl/blob/master/examples/PlotCLASSPowerSpectrum.jl) to call `classy` via `PyCall`, compute linear and non-linear P(k), and generate a figure.
-```
+```Julia
 using MatterPower
 using Roots
 
