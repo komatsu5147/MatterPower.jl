@@ -36,6 +36,24 @@ The package contains
 ## Optional Arguments
 - `a1::Real`: initial scale factor for `setup_growth(Ωm, ΩΛ[, a1])`, at which the initial condition is set as δ(a1) = a1. The default value: `1e-2`.
 
+## Correlation Function in Configuration Space
+
+Fourier transform of the power spectrum is a two-point correlation function in configuration space, `ξ(R)`, where `R` is the comoving separation. If we ignore anisotropy in the power spectrum caused by, e.g., the effect of pecular velocity of galaxies, `ξ(R)` can be calculated from the isotropic power spectrum as
+
+ξ(R) = (2π<sup>2</sup>)<sup>-1</sup> ∫<sub>0</sub><sup>∞</sup> dk k<sup>2</sup> P(k) sin(kR)/(kR) .
+
+This integral is difficult to evaluate because of the oscillatory function `sin(kR)/(kR)`. Fortunately, a Julia function `quaddeo` available in [DoubleExponentialFormulas.jl](https://github.com/machakann/DoubleExponentialFormulas.jl) can handle this integral. (Many thanks to [machakann](https://github.com/machakann) for implementing this!) Here is an exmaple Julia code to compute the corrletion function.
+```
+using DoubleExponentialFormulas
+# %% Define a function to return a power spectrum. See "Example Juia code" below for the example.
+pk(k) = ...
+# %% Compute ξ(R)
+kmin, kmax = 5e-4, Inf # h/Mpc
+R = 10.0 # Mpc/h
+func(k) = k^2 * pk(k) * sin(k * R) / (k * R) / 2 / π^2
+ξ, err = quaddeo(func, R, 0, kmin, kmax)
+```
+
 ## Motivation
 
 The linear matter power spectrum computed from the "no-wiggle" transfer function `t_nowiggle(k, ωm, fbaryon)` is not very accurate because it does not contain the Baryon Acoustic Oscillation (BAO) and it is a fitting function. If you need a very accurate linear matter power spectrum, you should use linear Boltzmann solvers such as [CAMB](https://github.com/cmbant/CAMB) and [CLASS](https://github.com/lesgourg/class_public).
