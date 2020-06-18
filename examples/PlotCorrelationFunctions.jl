@@ -81,13 +81,13 @@ p = plot(
    R .^ 2 .* ξ4,
    m = 2,
    c = :red,
-   lab = "Non-linear ξ(R) with BAO",
+   lab = "Halofit ξ(R) with BAO",
    ylab = L"R^2\xi(R)",
    xlab = L"R~[Mpc/h]",
    title = "Redshift = $z",
 )
 p =
-   plot!(R, R .^ 2 .* ξ2, ls = :dash, c = :red, lab = "Non-linear ξ(R) w/o BAO")
+   plot!(R, R .^ 2 .* ξ2, ls = :dash, c = :red, lab = "Halofit ξ(R) w/o BAO")
 p = plot!(R, R .^ 2 .* ξ3, m = 2, c = 1, lab = "Linear ξ(R) with BAO")
 p = plot!(R, R .^ 2 .* ξ1, ls = :dash, c = 1, lab = "Linear ξ(R) w/o BAO")
 savefig("xi.pdf")
