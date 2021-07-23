@@ -6,6 +6,15 @@ This package contains functions to compute
 3. Non-linear matter power spectrum
 4. Variance of the matter density fluctuation and its derivatives
 
+## Installation
+
+From the Julia REPL, run
+```Julia
+using Pkg
+Pkg.add("https://github.com/komatsu5147/MatterPower.jl")
+```
+## Contents
+
 The package contains
 1. Linear growth factor
   - `growth(Ωm, ΩΛ[, a1=1e-2])`: returns an interpolation function containing solutions of the linear matter density (δ) and velocity divergence (θ/H0) fields as a function of the scale factor, a  
