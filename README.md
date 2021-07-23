@@ -32,7 +32,7 @@ The package contains
   - `dsigma2gausdR(pk, R)`: returns a derivative of variance, dσ<sup>2</sup>/dR, with respect to a Gaussian filter with width `R`
   - `d2sigma2gausdR2(pk, R)`: returns a secon derivative of variance, d<sup>2</sup>σ<sup>2</sup>/dR<sup>2</sup>, with respect to a Gaussian filter with width `R`
 
-## Arguments
+### Arguments
 - `Ωm::Real`: present-day total matter density parameter.
 - `ΩΛ::Real`: present-day dark energy density parameter (for cosmological constant).
 - `k::Real`: comoving wavenumber.
@@ -43,7 +43,7 @@ The package contains
 - `Ωmz::Real`: matter density parameter at a given redshift z, e.g., ``Ωmz = Ωm(1+z)^3 / [Ωm(1+z)^3 + Ωk(1+z)^2 + ΩΛ]``.
 - `R::Real`: top-hat or Gaussian smoothing scale.
 
-## Optional Arguments
+### Optional Arguments
 - `a1::Real`: initial scale factor for `setup_growth(Ωm, ΩΛ[, a1])`, at which the initial condition is set as δ(a1) = a1. The default value: `1e-2`.
 
 ## Correlation Function in Configuration Space
