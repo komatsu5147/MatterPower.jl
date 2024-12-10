@@ -11,7 +11,7 @@ This package contains functions to compute
 From the Julia REPL, run
 ```Julia
 using Pkg
-Pkg.add(url="https://github.com/komatsu5147/MatterPower.jl")
+Pkg.add("MatterPower")
 ```
 ## Contents
 
