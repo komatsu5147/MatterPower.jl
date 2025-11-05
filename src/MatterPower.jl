@@ -1,5 +1,5 @@
 module MatterPower
-using OrdinaryDiffEq
+using OrdinaryDiffEqTsit5
 using DoubleExponentialFormulas
 using Roots
 export t_nowiggle
