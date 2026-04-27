@@ -1,7 +1,7 @@
 name = "MatterPower"
 uuid = "743831d1-0e6a-4e86-a0c4-1a098a68aca3"
-version = "0.5.1"
 authors = ["Eiichiro Komatsu <eiichirokomatsu@me.com>"]
+version = "0.5.2"
 
 [deps]
 DoubleExponentialFormulas = "eb426421-6452-4132-80ef-4b100a757ac5"
@@ -11,7 +11,7 @@ Roots = "f2b01f46-fcfa-551c-844a-d8ac1e96c665"
 [compat]
 julia = "1"
 DoubleExponentialFormulas = "0.1"
-OrdinaryDiffEqTsit5 = "1.5.0"
+OrdinaryDiffEqTsit5 = "1.5.0, 2"
 Roots = "2"
 
 [extras]
