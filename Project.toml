@@ -11,7 +11,7 @@ Roots = "f2b01f46-fcfa-551c-844a-d8ac1e96c665"
 [compat]
 julia = "1"
 DoubleExponentialFormulas = "0.1"
-OrdinaryDiffEqTsit5 = "1.5.0"
+OrdinaryDiffEqTsit5 = "1.5.0, 2"
 Roots = "2"
 
 [extras]
